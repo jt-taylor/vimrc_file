@@ -30,3 +30,6 @@ noremap <Up> <nop>
 noremap <Down> <nop>
 noremap <Left> <nop>
 noremap <Right> <nop>
+" :vex -> Vexplore , :sex -> Sexplore
+noremap :vex :Vexplore
+noremap :sex :Sexplore
