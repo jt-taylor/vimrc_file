@@ -1,7 +1,6 @@
 " Current plugins :
 "
 let mapleader= '\'
-map <leader>s :source ~/.vimrc<CR>
 " Some basic formatting for to make it look pretty
 filetype	on
 syntax		on
@@ -12,11 +11,21 @@ set showmatch
 set history=150
 set mouse=a
 set formatoptions+=r
-set comments =sl:/*,me:**,elx:*/
+set comments=sl:/*,me:**,elx:*/
 set ruler
 set lazyredraw
 set wildmenu
 set cursorline
+set hidden
+set visualbell
+set title
+
+"List ;
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+nnoremap <leader>nlst :set nolist<cr>
+nnoremap <leader>lst :set list<cr>
+
 " Keybindings to edit ~/.vimrc in current vim session as well as
 " the ability to source it without relaunching vim
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -33,3 +42,5 @@ noremap <Right> <nop>
 " :vex -> Vexplore , :sex -> Sexplore
 noremap :vex :Vexplore
 noremap :sex :Sexplore
+" Bindings for sessions
+nmap <leader>ss :wa<Bar>exe "mksession! " . v:this_session<cr>
