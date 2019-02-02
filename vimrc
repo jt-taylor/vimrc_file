@@ -8,6 +8,7 @@ colorscheme	torte
 set number
 set nocp
 set showmatch
+set showcmd
 set history=150
 set mouse=a
 set formatoptions+=r
@@ -30,9 +31,14 @@ nnoremap <leader>lst :set list<cr>
 " the ability to source it without relaunching vim
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-" This makes use jk instead of escape to hopefully prevent finger cramps 
+" This makes use jk instead of escape
 inoremap jk <esc>
 inoremap <esc> <nop>
+" some misc bindings to spare my fingers 
+nmap <leader>js :w<cr>
+nmap <leader>e :E<cr>
+inoremap {} {<cr>}<esc>ko
+inoremap <?php <?php<cr><cr>?><esc>ki
 " Remap the Arrow keys to do nothing to make myself use vim's keyboard search
 " functions
 noremap <Up> <nop>
@@ -44,3 +50,4 @@ noremap :vex :Vexplore
 noremap :sex :Sexplore
 " Bindings for sessions
 nmap <leader>ss :wa<Bar>exe "mksession! " . v:this_session<cr>
+nmap <leader>ls :source ~/.vim/sessions/
