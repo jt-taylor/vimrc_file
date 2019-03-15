@@ -4,7 +4,7 @@ let mapleader= '\'
 " Some basic formatting for to make it look pretty
 filetype	on
 syntax		on
-colorscheme	torte
+colorscheme	slate
 set number
 set nocp
 set showmatch
@@ -51,3 +51,5 @@ noremap :sex :Sexplore
 " Bindings for sessions
 nmap <leader>ss :wa<Bar>exe "mksession! " . v:this_session<cr>
 nmap <leader>ls :source ~/.vim/sessions/
+" Some stuff for buffers
+nnoremap <leader>b = :buffers<CR>
