@@ -20,6 +20,7 @@ set cursorline
 set hidden
 set visualbell
 set title
+highlight ColorColumn ctermbg=red
 
 "List ;
 set list
@@ -49,7 +50,30 @@ noremap <Right> <nop>
 noremap :vex :Vexplore
 noremap :sex :Sexplore
 " Bindings for sessions
-nmap <leader>ss :wa<Bar>exe "mksession! " . v:this_session<cr>
-nmap <leader>ls :source ~/.vim/sessions/
+"nmap <leader>ss :wa<Bar>exe "mksession! " . v:this_session<cr>
+"nmap <leader>ls :source ~/.vim/sessions/
+let g:sessions_dir = '~/.vim/sessions'
+exec 'nnoremap <leader>ss :wa<CR> :mks! ' . g:sessions_dir . '/*.vim<C-D><BS><BS><BS><BS><BS>'
+exec 'nnoremap <leader>sr :so ' . g:sessions_dir . '/*.vim<C-D><BS><BS><BS><BS><BS>'
+
 " Some stuff for buffers
 nnoremap <leader>b = :buffers<CR>
+
+" Hotkeys for functions
+nnoremap <leader>fill : call Fill_to_col_80_with_dash( '-' )<cr>
+
+" Functions
+function! Fill_to_col_80_with_dash( str )
+	let tw = &textwidth
+	if tw==0 | let tw = 80 | endif
+	.s/[[:space:]]*$//
+	let reps = (tw -col("$")) / len(a:str)
+	if reps > 0
+		.s/$/\=(' '.repeat(a:str, reps))/
+	endif
+endfunction
+
+" Misc
+autocmd Filetype c nnoremap <buffer> <localleader>c :source$MYVIMRC<cr>i/*<cr>
+call matchadd('ColorColumn', '\%81v', 100)
+
