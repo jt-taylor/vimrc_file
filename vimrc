@@ -5,7 +5,7 @@ let mapleader= '\'
 filetype	on
 syntax		on
 colorscheme	slate
-set number
+set number relativenumber
 set nocp
 set showmatch
 set showcmd
@@ -36,8 +36,8 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 inoremap jk <esc>
 inoremap <esc> <nop>
 " some misc bindings to spare my fingers 
-nmap <leader>js :w<cr>
-nmap <leader>e :E<cr>
+nnoremap <leader>js :w<cr>
+nnoremap <leader>e :E<cr>
 inoremap {} {<cr>}<esc>ko
 inoremap <?php <?php<cr><cr>?><esc>ki
 " Remap the Arrow keys to do nothing to make myself use vim's keyboard search
@@ -76,4 +76,4 @@ endfunction
 " Misc
 autocmd Filetype c nnoremap <buffer> <localleader>c :source$MYVIMRC<cr>i/*<cr>
 call matchadd('ColorColumn', '\%81v', 100)
-
+autocmd filetype php exec 'colo delek'
