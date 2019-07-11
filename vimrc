@@ -22,6 +22,25 @@ set visualbell
 set title
 highlight ColorColumn ctermbg=red
 
+
+"Status line settings -- See :h laststatus
+" default with ruler on :set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+set laststatus=2
+set statusline=
+set statusline+=%#PmenuSel#
+set statusline+=%{StatuslineGit()}
+set statusline+=%#LineNr#
+set statusline+=\ %f
+set statusline+=%m\
+set statusline+=%=
+set statusline+=%#CursorColumn#
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
+set statusline+=\
+
 "List ;
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
@@ -39,7 +58,6 @@ inoremap <esc> <nop>
 nnoremap <leader>js :w<cr>
 nnoremap <leader>e :E<cr>
 inoremap {} {<cr>}<esc>ko
-inoremap <?php <?php<cr><cr>?><esc>ki
 " Remap the Arrow keys to do nothing to make myself use vim's keyboard search
 " functions
 noremap <Up> <nop>
@@ -71,6 +89,15 @@ function! Fill_to_col_80_with_dash( str )
 	if reps > 0
 		.s/$/\=(' '.repeat(a:str, reps))/
 	endif
+endfunction
+
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 
 " Misc
